@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -18,12 +18,18 @@
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 
+
+;; line numbers
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers 'relative)
+
 ;; package management
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-'("melpa" . "https://melpa.org/packages/"))
+	     '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
+
 
 ;; initialize use-package
 (unless (package-installed-p 'use-package)
@@ -34,16 +40,16 @@
 :ensure t)
 
 (use-package which-key
-:ensure t
-:config
-(which-key-mode))
+  :ensure t
+  :config
+  (which-key-mode))
+
 
 ;; org-mode tools
 (use-package org-bullets
-:ensure t
-:config
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package ox-clip
   :ensure t
@@ -53,6 +59,7 @@
 	      (keymap-local-set "C-c w" 'ox-clip-formatted-copy))))
 
 (defalias 'list-buffers 'ibuffer-other-window)
+
 
 ;; window state management
 (winner-mode 1)
@@ -87,6 +94,7 @@
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
     ))
 
+
 ;; RSS/ATOM feed
 (use-package elfeed
   :ensure t
@@ -94,3 +102,10 @@
   :custom
   (elfeed-feeds
    '("https://www.reddit.com/r/StallmanWasRight.rss")))
+
+
+;; theme
+(use-package timu-macos-theme
+  :ensure t
+  :config
+  (load-theme 'timu-macos t))
