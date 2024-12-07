@@ -18,14 +18,14 @@
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 
+;; package management
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 '("melpa" . "https://melpa.org/packages/"))
-
 (package-initialize)
 
-;; Bootstrap `use-package'
+;; initialize use-package
 (unless (package-installed-p 'use-package)
 (package-refresh-contents)
 (package-install 'use-package))
@@ -38,12 +38,12 @@
 :config
 (which-key-mode))
 
-
-;; org-mode stuff
+;; org-mode tools
 (use-package org-bullets
 :ensure t
 :config
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 
 (use-package ox-clip
   :ensure t
@@ -51,11 +51,6 @@
   (add-hook 'org-mode-hook
 	    (lambda ()
 	      (keymap-local-set "C-c w" 'ox-clip-formatted-copy))))
-
-;; minibuffer hints
-;; (setq indo-enable-flex-matching t)
-;; (setq ido-everywhere t)
-; (ido-mode 1)
 
 (defalias 'list-buffers 'ibuffer-other-window)
 
@@ -67,7 +62,6 @@
   :init
   (progn
     (global-set-key [remap other-window] 'ace-window)))
-
 
 (use-package ivy
   :ensure t
@@ -93,14 +87,7 @@
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
     ))
 
-;; (setq
-;;  newsticker-url-list-defaults nil ;; remove EmacsWiki
-;;  newsticker-retrieval-interval 0 ;; do not retrieve if not requested
-;;  newsticker-url-list
-;;       '(
-;; 	("Reddit - Stallman Was Right" "https://www.reddit.com/r/StallmanWasRight")
-;; 	))
-
+;; RSS/ATOM feed
 (use-package elfeed
   :ensure t
   :bind ("C-x w e" . elfeed)
