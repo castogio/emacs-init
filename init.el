@@ -18,6 +18,9 @@
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 
+;; scratch buffer settings
+(setq initial-scratch-message "")
+(setq initial-major-mode 'org-mode)
 
 ;; line numbers
 (global-display-line-numbers-mode 1)
@@ -46,6 +49,8 @@
 
 
 ;; org-mode tools
+(add-hook 'org-mode-hook (lambda () (abbrev-mode 1)))
+
 (use-package org-bullets
   :ensure t
   :config
