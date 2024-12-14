@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(multi-vterm timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -48,8 +48,13 @@
   (which-key-mode))
 
 
+;; terminal session
+(use-package multi-vterm
+  :ensure t
+  :commands (vterm))
+
 ;; org-mode tools
-(add-hook 'org-mode-hook (lambda () (abbrev-mode 1)))
+(add-hook 'org-mode-hook (lambda () (abbrev-mode t)))
 
 (use-package org-bullets
   :ensure t
