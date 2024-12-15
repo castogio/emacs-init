@@ -23,8 +23,8 @@
 (setq initial-major-mode 'org-mode)
 
 ;; line numbers
+(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode 1)
-(setq display-line-numbers 'relative)
 
 ;; package management
 (require 'package)
@@ -123,3 +123,4 @@
   :ensure t
   :config
   (load-theme 'timu-macos t))
+
