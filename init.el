@@ -56,12 +56,12 @@
   :commands (vterm))
 
 ;; org-mode tools
-(add-hook 'org-mode-hook (lambda () (abbrev-mode t)))
+(add-hook 'org-mode-hook #'abbrev-mode t)
 
 (use-package org-bullets
   :ensure t
   :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (add-hook 'org-mode-hook #'org-bullets-mode))
 
 (use-package ox-clip
   :ensure t
@@ -103,7 +103,9 @@
     (ivy-mode)
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
-    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+    (define-key minibuffer-local-map
+		(kbd "C-r")
+		'counsel-minibuffer-history)
     ))
 
 
@@ -131,8 +133,16 @@
 		    :family "JetBrains Mono Medium"
 		    :height 110)
 
+;; highlight current line
+(global-hl-line-mode t)
+
+;; show column boundary
+(add-hook 'emacs-lisp-mode-hook
+	  #'display-fill-column-indicator-mode)
+
 ;; -------- RANDOM ----------
 
 ;; typinng aid
 (use-package speed-type
   :ensure t)
+
