@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit multi-vterm timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -16,7 +16,9 @@
 ;; CUSTOM SETTINGS
 
 (setq inhibit-startup-message t)
+(menu-bar-mode -1)
 (tool-bar-mode -1)
+(toggle-scroll-bar -1)
 
 ;; scratch buffer settings
 (setq initial-scratch-message "")
@@ -124,3 +126,13 @@
   :config
   (load-theme 'timu-macos t))
 
+;; set font
+(set-face-attribute 'default nil
+		    :family "JetBrains Mono Medium"
+		    :height 110)
+
+;; -------- RANDOM ----------
+
+;; typinng aid
+(use-package speed-type
+  :ensure t)
