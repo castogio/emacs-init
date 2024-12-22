@@ -159,10 +159,13 @@
   :hook (emacs-lisp-mode . indent-guide-mode)
   :hook (python-mode . indent-guide-mode))
 	 
+(use-package move-text
+  :ensure t
+  :config (move-text-default-bindings))
 
 ;; -------- RANDOM ----------
 
-;; typinng aid
+;; typing aid
 (use-package speed-type
   :ensure t)
 
