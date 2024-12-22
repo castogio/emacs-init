@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,7 +56,7 @@
   :commands (vterm))
 
 ;; org-mode tools
-(add-hook 'org-mode-hook #'abbrev-mode t)
+(add-hook 'org-mode-hook #'abbrev-mode)
 
 (use-package org-bullets
   :ensure t
@@ -133,12 +133,19 @@
 		    :family "JetBrains Mono Medium"
 		    :height 110)
 
+
+;; -------- PROGRAMMING ----------
+
 ;; highlight current line
 (global-hl-line-mode t)
 
 ;; show column boundary
 (add-hook 'emacs-lisp-mode-hook
 	  #'display-fill-column-indicator-mode)
+
+(use-package focus
+  :ensure t
+  :hook (emacs-lisp-mode . focus-mode))
 
 ;; -------- RANDOM ----------
 
