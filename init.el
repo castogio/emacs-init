@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -142,10 +142,23 @@
 ;; show column boundary
 (add-hook 'emacs-lisp-mode-hook
 	  #'display-fill-column-indicator-mode)
+(add-hook 'python-mode-hook
+	  #'display-fill-column-indicator-mode)
+
 
 (use-package focus
   :ensure t
-  :hook (emacs-lisp-mode . focus-mode))
+  :hook (emacs-lisp-mode . focus-mode)
+  :hook (python-mode . focus-mode))
+
+
+(use-package indent-guide
+  :ensure t
+  :config (set-face-background 'indent-guide-face
+			       "background at point")
+  :hook (emacs-lisp-mode . indent-guide-mode)
+  :hook (python-mode . indent-guide-mode))
+	 
 
 ;; -------- RANDOM ----------
 
