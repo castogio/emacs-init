@@ -16,9 +16,9 @@
 ;; CUSTOM SETTINGS
 
 (setq inhibit-startup-message t)
-(menu-bar-mode -1)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
+(menu-bar-mode -1)
 
 ;; scratch buffer settings
 (setq initial-scratch-message "")
@@ -35,7 +35,6 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-
 ;; initialize use-package
 (unless (package-installed-p 'use-package)
 (package-refresh-contents)
@@ -48,7 +47,6 @@
   :ensure t
   :config
   (which-key-mode))
-
 
 ;; terminal session
 (use-package multi-vterm
@@ -71,7 +69,6 @@
 	      (keymap-local-set "C-c w" 'ox-clip-formatted-copy))))
 
 (defalias 'list-buffers 'ibuffer-other-window)
-
 
 ;; window state management
 (winner-mode 1)
@@ -108,7 +105,6 @@
 		'counsel-minibuffer-history)
     ))
 
-
 ;; RSS/ATOM feed
 (use-package elfeed
   :ensure t
@@ -116,7 +112,6 @@
   :custom
   (elfeed-feeds
    '("https://www.reddit.com/r/StallmanWasRight.rss")))
-
 
 ;; programming tools
 (use-package magit
@@ -145,12 +140,10 @@
 (add-hook 'python-mode-hook
 	  #'display-fill-column-indicator-mode)
 
-
 (use-package focus
   :ensure t
   :hook (emacs-lisp-mode . focus-mode)
   :hook (python-mode . focus-mode))
-
 
 (use-package indent-guide
   :ensure t
@@ -162,6 +155,7 @@
 (use-package move-text
   :ensure t
   :config (move-text-default-bindings))
+
 
 ;; -------- RANDOM ----------
 
