@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit multi-vterm timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(tramp magit multi-vterm timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -117,6 +117,9 @@
 ;; programming tools
 (use-package magit
   :ensure t)
+
+;; tramp mode config
+(customize-set-variable 'tramp-use-ssh-controlmaster-options nil)
 
 ;; theme
 (use-package timu-macos-theme
