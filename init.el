@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets)))
+   '(nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
+ '(safe-local-variable-values '((org-confirm-babel-evaluate))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,6 +16,9 @@
 
 ;; CUSTOM SETTINGS
 
+;; custom paths
+;; (add-to-list 'load-path "~/src/org-mode/lisp")
+
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -24,9 +28,6 @@
 (setq initial-scratch-message "")
 (setq initial-major-mode 'org-mode)
 
-;; line numbers
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode 1)
 
 ;; package management
 (require 'package)
@@ -34,6 +35,7 @@
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
+;; (package-refresh-contents)
 
 ;; initialize use-package
 (unless (package-installed-p 'use-package)
@@ -129,7 +131,7 @@
 ;; set font
 (set-face-attribute 'default nil
 		    :family "JetBrains Mono Medium"
-		    :height 110)
+		    :height 120)
 
 
 ;; -------- PROGRAMMING ----------
@@ -169,4 +171,7 @@
 ;; typing aid
 (use-package speed-type
   :ensure t)
+
+;; line numbers
+(global-display-line-numbers-mode)
 
