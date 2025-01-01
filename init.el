@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
+   '(xclip nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
  '(safe-local-variable-values '((org-confirm-babel-evaluate))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -16,9 +16,6 @@
 
 ;; CUSTOM SETTINGS
 
-;; custom paths
-;; (add-to-list 'load-path "~/src/org-mode/lisp")
-
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -28,14 +25,12 @@
 (setq initial-scratch-message "")
 (setq initial-major-mode 'org-mode)
 
-
 ;; package management
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
-;; (package-refresh-contents)
 
 ;; initialize use-package
 (unless (package-installed-p 'use-package)
@@ -49,6 +44,11 @@
   :ensure t
   :config
   (which-key-mode))
+
+;; copy-paste to GUI (Xorgs)
+(use-package xclip
+  :ensure t
+  :commands (xclip-mode))
 
 ;; terminal session
 (use-package multi-vterm
@@ -129,9 +129,14 @@
   (load-theme 'timu-macos t))
 
 ;; set font
-(set-face-attribute 'default nil
-		    :family "JetBrains Mono Medium"
-		    :height 120)
+(set-frame-font "JetBrains Mono Medium 13" nil t)
+
+;; line numbers
+(setq display-line-numbers-grow-only t) ; Allow line numbers to grow if needed
+(setq display-line-numbers-type 'relative) ; Optional: Set type of line numbers
+(custom-set-faces
+ '(line-number-current-line ((t (:foreground "cyan" :weight bold)))))
+(global-display-line-numbers-mode)
 
 
 ;; -------- PROGRAMMING ----------
@@ -171,7 +176,4 @@
 ;; typing aid
 (use-package speed-type
   :ensure t)
-
-;; line numbers
-(global-display-line-numbers-mode)
 
