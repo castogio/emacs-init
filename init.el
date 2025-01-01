@@ -152,7 +152,8 @@
 
 (use-package focus
   :ensure t
-  :hook (emacs-lisp-mode . focus-mode)
+  ;; a lot of short functions in init.el
+  ;;  :hook (emacs-lisp-mode . focus-mode)
   :hook (python-mode . focus-mode))
 
 (use-package indent-guide
@@ -168,8 +169,11 @@
 
 
 ;; -------- FILE NAVIGATION ----------
-(use-package ranger
-  :ensure t)
+
+;; ranger messes up with the keybindings I know
+;; (use-package ranger
+;;   :ensure t
+;;   :config (ranger-override-dired-mode nil))
 
 ;; -------- RANDOM ----------
 
@@ -177,3 +181,8 @@
 (use-package speed-type
   :ensure t)
 
+;; prettify symbols
+(add-hook 'python-mode-hook 'prettify-symbols-mode)
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (push '(">=" . ?≥) prettify-symbols-alist)))
