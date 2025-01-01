@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company lsp-mode xclip nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
+   '(pipenv company lsp-mode xclip nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
  '(safe-local-variable-values '((org-confirm-babel-evaluate))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -165,13 +165,16 @@
   :config (move-text-default-bindings))
 
 (use-package lsp-mode
-  :ensure t
-  :hook (python-mode . lsp-mode))
+  :ensure t)
 
 (use-package company
   :ensure t
   :hook (python-mode . company-mode)
   :hook (emacs-lisp-mode . company-mode))
+
+(use-package pipenv
+  :ensure t
+  :hook (python-mode . pipenv-mode))
   
 
 ;; -------- FILE NAVIGATION ----------
