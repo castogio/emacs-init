@@ -4,14 +4,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(xclip nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
+   '(company lsp-mode xclip nlinum org ranger move-text indent-guide focus speed-type timu-macos-theme elfeed ox-clip counsel ace-window which-key try org-bullets))
  '(safe-local-variable-values '((org-confirm-babel-evaluate))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(line-number-current-line ((t (:foreground "cyan" :weight bold)))))
 
 
 ;; CUSTOM SETTINGS
@@ -134,10 +134,7 @@
 ;; line numbers
 (setq display-line-numbers-grow-only t) ; Allow line numbers to grow if needed
 (setq display-line-numbers-type 'relative) ; Optional: Set type of line numbers
-(custom-set-faces
- '(line-number-current-line ((t (:foreground "cyan" :weight bold)))))
 (global-display-line-numbers-mode)
-
 
 ;; -------- PROGRAMMING ----------
 
@@ -167,6 +164,15 @@
   :ensure t
   :config (move-text-default-bindings))
 
+(use-package lsp-mode
+  :ensure t
+  :hook (python-mode . lsp-mode))
+
+(use-package company
+  :ensure t
+  :hook (python-mode . company-mode)
+  :hook (emacs-lisp-mode . company-mode))
+  
 
 ;; -------- FILE NAVIGATION ----------
 
@@ -185,4 +191,6 @@
 (add-hook 'python-mode-hook 'prettify-symbols-mode)
 (add-hook 'python-mode-hook
 	  (lambda ()
-	    (push '(">=" . ?≥) prettify-symbols-alist)))
+	    (push '(">=" . ?≥) prettify-symbols-alist)
+	    (push '("==" . ?≡) prettify-symbols-alist)))
+	  
