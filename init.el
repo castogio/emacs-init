@@ -164,9 +164,6 @@
   :ensure t
   :config (move-text-default-bindings))
 
-(use-package lsp-mode
-  :ensure t)
-
 (use-package company
   :ensure t
   :hook (python-mode . company-mode)
